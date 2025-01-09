@@ -33,7 +33,7 @@ void Game::events() {
     }
 }
 
-void Game::draw() {
+void Game::draw() const {
     SDL_RenderClear(this->renderer.get());
 
     SDL_RenderPresent(this->renderer.get());

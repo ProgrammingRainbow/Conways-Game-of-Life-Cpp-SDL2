@@ -58,14 +58,15 @@ void Board::update() {
     this->board.swap(this->next_board);
 }
 
-void Board::draw() {
+void Board::draw() const {
     SDL_SetRenderDrawColor(this->renderer.get(), CELL_COLOR);
+    SDL_Rect rect{0, 0, SIZE - 1, SIZE - 1};
     for (std::size_t row = 0; row < this->rows; ++row) {
-        this->rect.y = static_cast<int>(row) * SIZE;
+        rect.y = static_cast<int>(row) * SIZE;
         for (std::size_t column = 0; column < this->columns; ++column) {
-            this->rect.x = static_cast<int>(column * SIZE);
+            rect.x = static_cast<int>(column * SIZE);
             if (board[row][column] == 1) {
-                SDL_RenderFillRect(this->renderer.get(), &this->rect);
+                SDL_RenderFillRect(this->renderer.get(), &rect);
             }
         }
     }

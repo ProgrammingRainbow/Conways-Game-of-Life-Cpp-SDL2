@@ -18,7 +18,7 @@ class Game {
 
     private:
         void events();
-        void draw();
+        void draw() const;
 
         std::shared_ptr<SDL_Window> window;
         std::shared_ptr<SDL_Renderer> renderer;

@@ -78,7 +78,7 @@ void Game::update() {
     }
 }
 
-void Game::draw() {
+void Game::draw() const {
     SDL_SetRenderDrawColor(this->renderer.get(), RENDERER_COLOR);
     SDL_RenderClear(this->renderer.get());
 

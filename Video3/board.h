@@ -12,7 +12,6 @@ class Board {
               board{(unsigned)rows, std::vector<int>((unsigned)columns, 0)},
               next_board{(unsigned)rows,
                          std::vector<int>((unsigned)columns, 0)},
-              rect{0, 0, SIZE - 1, SIZE - 1},
               rd{},
               gen{rd()},
               rand_cell{0, 1} {}
@@ -20,7 +19,7 @@ class Board {
         void init();
         void reset();
         void clear();
-        void draw();
+        void draw() const;
 
     private:
         std::shared_ptr<SDL_Renderer> renderer;
@@ -28,7 +27,6 @@ class Board {
         const std::size_t columns;
         std::vector<std::vector<int>> board;
         std::vector<std::vector<int>> next_board;
-        SDL_Rect rect;
         std::random_device rd;
         std::mt19937 gen;
         std::uniform_int_distribution<int> rand_cell;
