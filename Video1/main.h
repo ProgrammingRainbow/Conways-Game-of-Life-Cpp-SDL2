@@ -2,13 +2,14 @@
 #define MAIN_H
 
 #include <SDL2/SDL.h>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <memory>
 
-#define SDL_FLAGS (SDL_INIT_VIDEO | SDL_INIT_AUDIO)
-#define WINDOW_TITLE "Conway's Game of Life"
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+constexpr int SDL_FLAGS = (SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+
+constexpr const char *WINDOW_TITLE = "Conway's Game of Life";
+constexpr int WINDOW_WIDTH = 1280;
+constexpr int WINDOW_HEIGHT = 720;
 
 #endif

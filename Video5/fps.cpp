@@ -1,16 +1,5 @@
 #include "fps.h"
 
-Fps::Fps()
-    : dt{0},
-      target_delay{TARGET_DELAY},
-      max_delay{50.0},
-      last_time{std::chrono::steady_clock::now()},
-      carry_delay{0},
-      last_fps{std::chrono::steady_clock::now()},
-      fps_delay{std::chrono::seconds(1)},
-      frames{0},
-      enable_fps{false} {}
-
 void Fps::increaseSpeed() {
     if (this->target_delay.count() > 8) {
         this->target_delay /= 2;
@@ -38,8 +27,8 @@ void Fps::toggleFps() {
 
 void Fps::show_fps() {
     if (this->enable_fps) {
-        auto current_time = std::chrono::steady_clock::now();
-        if (current_time >= this->last_fps + this->fps_delay) {
+        auto current_fps_time = std::chrono::steady_clock::now();
+        if (current_fps_time >= this->last_fps + this->fps_delay) {
             std::cout << this->frames << std::endl;
             this->last_fps = this->last_fps + this->fps_delay;
             this->frames = 0;

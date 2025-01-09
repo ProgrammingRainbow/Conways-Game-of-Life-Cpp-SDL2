@@ -1,9 +1,5 @@
 #include "game.h"
 
-Game::Game()
-    : window{nullptr, SDL_DestroyWindow},
-      renderer{nullptr, SDL_DestroyRenderer} {}
-
 Game::~Game() {
     this->renderer.reset();
     this->window.reset();
@@ -12,6 +8,8 @@ Game::~Game() {
 
     std::cout << "all clean!" << std::endl;
 }
+
+void Game::init() { this->init_sdl(); }
 
 void Game::run() {
     SDL_RenderClear(this->renderer.get());

@@ -5,11 +5,17 @@
 
 class Message {
     public:
-        Message(std::shared_ptr<SDL_Renderer> renderer);
+        Message(std::shared_ptr<SDL_Renderer> ren)
+            : renderer{ren},
+              font{nullptr, TTF_CloseFont},
+              surface{nullptr, SDL_FreeSurface},
+              image{nullptr, SDL_DestroyTexture},
+              rect{10, 10, 0, 0},
+              color{FONT_COLOR} {}
 
         void init(bool paused, double delay);
         void update(bool paused, double delay);
-        void draw();
+        void draw() const;
 
     private:
         std::shared_ptr<SDL_Renderer> renderer;
@@ -18,7 +24,6 @@ class Message {
         std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)> image;
         SDL_Rect rect;
         SDL_Color color;
-        unsigned int score;
 };
 
 #endif

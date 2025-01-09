@@ -1,11 +1,5 @@
 #include "game.h"
 
-Game::Game()
-    : window{nullptr, SDL_DestroyWindow},
-      renderer{nullptr, SDL_DestroyRenderer},
-      is_running{true},
-      is_paused{false} {}
-
 Game::~Game() {
     this->message.reset();
     this->fps.reset();
@@ -22,6 +16,8 @@ Game::~Game() {
 }
 
 void Game::init() {
+    this->init_sdl();
+
     this->board.reset(new Board(this->renderer));
     this->board->init();
 
@@ -32,7 +28,7 @@ void Game::init() {
 }
 
 void Game::togglePause() {
-    is_paused = !is_paused;
+    this->is_paused = !is_paused;
     this->message->update(this->is_paused, this->fps->getDelay());
 }
 
@@ -79,9 +75,11 @@ void Game::events() {
                 break;
             case SDL_SCANCODE_F:
                 this->fps->toggleFps();
+                break;
             default:
                 break;
             }
+            break;
         default:
             break;
         }
@@ -94,7 +92,7 @@ void Game::update() {
     }
 }
 
-void Game::draw() {
+void Game::draw() const {
     SDL_SetRenderDrawColor(this->renderer.get(), RENDERER_COLOR);
     SDL_RenderClear(this->renderer.get());
 

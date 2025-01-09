@@ -5,7 +5,17 @@
 
 class Board {
     public:
-        Board(std::shared_ptr<SDL_Renderer> renderer);
+        Board(std::shared_ptr<SDL_Renderer> ren)
+            : renderer{ren},
+              rows{WINDOW_HEIGHT / SIZE},
+              columns{WINDOW_WIDTH / SIZE},
+              board{(unsigned)rows, std::vector<int>((unsigned)columns, 0)},
+              next_board{(unsigned)rows,
+                         std::vector<int>((unsigned)columns, 0)},
+              rect{0, 0, SIZE - 1, SIZE - 1},
+              rd{},
+              gen{rd()},
+              rand_cell{0, 1} {}
 
         void init();
         void reset();
@@ -14,8 +24,8 @@ class Board {
 
     private:
         std::shared_ptr<SDL_Renderer> renderer;
-        const int rows;
-        const int columns;
+        const std::size_t rows;
+        const std::size_t columns;
         std::vector<std::vector<int>> board;
         std::vector<std::vector<int>> next_board;
         SDL_Rect rect;

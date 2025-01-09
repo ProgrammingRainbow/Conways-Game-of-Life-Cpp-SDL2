@@ -7,7 +7,18 @@
 
 class Fps {
     public:
-        Fps();
+        Fps()
+            : dt{0},
+              target_delay{TARGET_DELAY},
+              max_delay{50.0},
+              last_time{std::chrono::steady_clock::now()},
+              carry_delay{0},
+              first_elapsed{0},
+              second_elapsed{0},
+              last_fps{std::chrono::steady_clock::now()},
+              fps_delay{std::chrono::seconds(1)},
+              frames{0},
+              enable_fps{false} {}
 
         void increaseSpeed();
         void decreaseSpeed();

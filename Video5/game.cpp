@@ -1,11 +1,5 @@
 #include "game.h"
 
-Game::Game()
-    : window{nullptr, SDL_DestroyWindow},
-      renderer{nullptr, SDL_DestroyRenderer},
-      is_running{true},
-      is_paused{false} {}
-
 Game::~Game() {
     this->fps.reset();
     this->board.reset();
@@ -20,6 +14,8 @@ Game::~Game() {
 }
 
 void Game::init() {
+    this->init_sdl();
+
     this->board.reset(new Board(this->renderer));
     this->board->init();
 
@@ -65,9 +61,11 @@ void Game::events() {
                 break;
             case SDL_SCANCODE_F:
                 this->fps->toggleFps();
+                break;
             default:
                 break;
             }
+            break;
         default:
             break;
         }

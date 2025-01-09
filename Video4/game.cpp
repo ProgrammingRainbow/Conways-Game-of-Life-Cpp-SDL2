@@ -1,11 +1,5 @@
 #include "game.h"
 
-Game::Game()
-    : window{nullptr, SDL_DestroyWindow},
-      renderer{nullptr, SDL_DestroyRenderer},
-      is_running{true},
-      is_paused{false} {}
-
 Game::~Game() {
     this->board.reset();
 
@@ -19,6 +13,8 @@ Game::~Game() {
 }
 
 void Game::init() {
+    this->init_sdl();
+
     this->board.reset(new Board(this->renderer));
     this->board->init();
 }
@@ -53,6 +49,7 @@ void Game::events() {
             default:
                 break;
             }
+            break;
         default:
             break;
         }

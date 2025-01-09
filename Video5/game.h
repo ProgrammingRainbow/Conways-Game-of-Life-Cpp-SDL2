@@ -1,13 +1,20 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "main.h"
 #include "board.h"
 #include "fps.h"
-#include "main.h"
 
 class Game {
     public:
-        Game();
+        Game()
+            : window{nullptr, SDL_DestroyWindow},
+              renderer{nullptr, SDL_DestroyRenderer},
+              board{nullptr},
+              fps{nullptr},
+              event{},
+              is_running{true},
+              is_paused{false} {}
         ~Game();
 
         void init_sdl();
